@@ -1,0 +1,43 @@
+{
+    "name": "robertsaupe/php-systeminfo",
+    "description": "php library to get useful information about the system",
+    "keywords": [
+        "php",
+        "php8",
+        "library",
+        "info",
+        "information",
+        "system",
+        "server",
+        "check",
+        "os",
+        "operation-system",
+        "operating-system"
+    ],
+    "homepage": "https://github.com/robertsaupe/php-systeminfo",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robert Saupe",
+            "email": "mail@robertsaupe.de",
+            "homepage": "https://robertsaupe.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0"
+    },
+    "autoload": {
+        "psr-4": { 
+            "robertsaupe\\SystemInfo\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.0.0"
+        },
+        "platform-check": false,
+        "sort-packages": true
+    }
+}
