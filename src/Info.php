@@ -115,16 +115,20 @@ class Info {
         }
     }
 
-    public static function getTotalSpace(string $path = '.'): float|false {
-        return disk_total_space($path);
+    public static function getTotalSpace(string $path = '.'): int|false {
+        $bytes = disk_total_space($path);
+        return $bytes === false ? false : intval($bytes);
     }
 
-    public static function getFreeSpace(string $path = '.'): float|false {
-        return disk_free_space($path);
+    public static function getFreeSpace(string $path = '.'): int|false {
+        $bytes = disk_free_space($path);
+        return $bytes === false ? false : intval($bytes);
     }
 
-    public static function getUsedSpace(string $path = '.'): float|false {
-        return self::getTotalSpace($path) - self::getFreeSpace($path);
+    public static function getUsedSpace(string $path = '.'): int|false {
+        $totalBytes = self::getTotalSpace($path);
+        $freeBytes = self::getFreeSpace($path);
+        return $totalBytes === false || $freeBytes === false ? false : $totalBytes - $freeBytes;
     }
 
     public static function phpInfo(): array {
