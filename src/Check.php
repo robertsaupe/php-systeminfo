@@ -72,6 +72,7 @@ class Check {
 
     public static function classImplements(string $className, string $interfaceName): bool {
         $interfaces = class_implements($className);
+        /** @phpstan-ignore-next-line */
         return isset($interfaces[$interfaceName]) ? true : false;
     }
 
@@ -92,6 +93,7 @@ class Check {
     }
 
     public static function execAvailable(): bool {
+        /** @phpstan-ignore-next-line */
         if (function_exists('exec') && strpos(@ini_get('disable_functions'), 'exec') === false && @exec('echo EXEC') == 'EXEC') {
             return true;
         } else {
@@ -100,6 +102,7 @@ class Check {
     }
 
     public static function shellexecAvailable(): bool {
+        /** @phpstan-ignore-next-line */
         if (function_exists('shell_exec') && strpos(@ini_get('disable_functions'), 'shell_exec') === false && strpos(@shell_exec('echo EXEC'), 'EXEC') !== false) {
             return true;
         } else {
@@ -108,17 +111,21 @@ class Check {
     }
 
     public static function popenAvailable(): bool {
+        /** @phpstan-ignore-next-line */
         if (function_exists('popen') && strpos(@ini_get('disable_functions'), 'popen') === false) {
             $handle = @popen('echo EXEC', 'r');
+            /** @phpstan-ignore-next-line */
             $read = fread($handle, 4);
+            /** @phpstan-ignore-next-line */
             pclose($handle);
+            /** @phpstan-ignore-next-line */
             return (strpos($read, 'EXEC') !== false) ? true : false;
         } else {
             return false;
         }
     }
 
-    public static function programAvailable($programName): bool {
+    public static function programAvailable(string $programName): bool {
         if (@exec('command -v ' . $programName . ' >/dev/null 2>&1 || { echo >&1 "false";}') == 'false') {
             return false;
         } else {
@@ -126,7 +133,7 @@ class Check {
         }
     }
 
-    public static function extensionAvailable($extensionName): bool {
+    public static function extensionAvailable(string $extensionName): bool {
         return extension_loaded($extensionName);
     }
 

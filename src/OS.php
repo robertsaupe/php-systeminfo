@@ -44,42 +44,42 @@ class OS {
     }
 
     /**
-     * @return php_uname('a');
+     * @return string php_uname('a');
      */
     public static function getInfo(): string {
         return php_uname('a');
     }
 
     /**
-     * @return php_uname('n');
+     * @return string php_uname('n');
      */
     public static function getHostName(): string {
         return php_uname('n');
     }
 
     /**
-     * @return php_uname('s');
+     * @return string php_uname('s');
      */
     public static function getOSName(): string {
         return php_uname('s');
     }
 
     /**
-     * @return php_uname('r');
+     * @return string php_uname('r');
      */
     public static function getReleaseName(): string {
         return php_uname('r');
     }
 
     /**
-     * @return php_uname('v');
+     * @return string php_uname('v');
      */
     public static function getVersion(): string {
         return php_uname('v');
     }
 
     /**
-     * @return php_uname('m');
+     * @return string php_uname('m');
      */
     public static function getMachineType(): string {
         return php_uname('m');
@@ -88,15 +88,19 @@ class OS {
     /**
      * returns an array of linux informations from /etc/os-release
      *
+     * @return mixed[]
      * @link https://stackoverflow.com/a/42397673
      */
     public static function getLinuxInfo(): ?array {
         if (!Check::shellexecAvailable() || !is_readable("/etc/os-release")) return null;
 
         $os         = shell_exec('cat /etc/os-release');
+        
+        /** @phpstan-ignore-next-line */
         $listIds    = preg_match_all('/.*=/', $os, $matchListIds);
         $listIds    = $matchListIds[0];
 
+        /** @phpstan-ignore-next-line */
         $listVal    = preg_match_all('/=.*/', $os, $matchListVal);
         $listVal    = $matchListVal[0];
 

@@ -41,6 +41,7 @@ class Info {
 
     public static function getProcessUserName(): ?string {
         $processUser = posix_getpwuid(self::getProcessUserID());
+        /** @phpstan-ignore-next-line */
         if (isset($processUser['name'])) {
             return $processUser['name'];
         } else {
@@ -88,6 +89,7 @@ class Info {
     public static function getDirectorySizeNative(string $path = '.'): int|false {
         $bytes = 0;
         $path = realpath($path);
+        /** @phpstan-ignore-next-line */
         if($path !== false && $path != '' && file_exists($path)) {
             foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object) {
                 if (is_object($object) && $object instanceof SplFileInfo) {
@@ -105,6 +107,7 @@ class Info {
      */
     public static function getDirectorySizeExec(string $path = '.'): int|false {
         $path = realpath($path);
+        /** @phpstan-ignore-next-line */
         if(Check::execAvailable() && $path !== false && $path != '' && file_exists($path)) {
             $bytes = @exec('du -b '. $path .' | awk "{print $1}"');
             $bytes = intval($bytes);
@@ -131,13 +134,20 @@ class Info {
         return $totalBytes === false || $freeBytes === false ? false : $totalBytes - $freeBytes;
     }
 
+    /**
+     * @return mixed[]
+     */
     public static function phpInfo(): array {
         ob_start();
         phpinfo();
+        /** @phpstan-ignore-next-line */
         $phpInfo = explode("\n", ob_get_clean());
         return $phpInfo;
     }
 
+    /**
+     * @return mixed[]|false
+     */
     public static function phpInfoExec(string $phpBinPath = 'php'): array|false {
         if (!Check::execAvailable()) return false;
         $phpInfo = [];
@@ -145,10 +155,16 @@ class Info {
         return $phpInfo;
     }
 
+    /**
+     * @return string|mixed[]|false
+     */
     public static function getEnv(): string|array|false {
         return getenv();
     }
 
+    /**
+     * @return mixed[]
+     */
     public static function getEnvironment(): array {
 
         $serverEssentialArguments = array(
