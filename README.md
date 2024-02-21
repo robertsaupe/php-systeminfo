@@ -1,6 +1,6 @@
 # php-systeminfo
 
-[![Minimum PHP version: 8.0](https://img.shields.io/badge/php-8.0%2B-blue.svg?color=blue&style=for-the-badge)](https://packagist.org/packages/robertsaupe/php-systeminfo)
+[![Minimum PHP version: 8.2](https://img.shields.io/badge/php-8.2%2B-blue.svg?color=blue&style=for-the-badge)](https://packagist.org/packages/robertsaupe/php-systeminfo)
 [![Packagist Version](https://img.shields.io/packagist/v/robertsaupe/php-systeminfo?color=blue&style=for-the-badge)](https://packagist.org/packages/robertsaupe/php-systeminfo)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/robertsaupe/php-systeminfo?color=blue&style=for-the-badge)](https://packagist.org/packages/robertsaupe/php-systeminfo)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)

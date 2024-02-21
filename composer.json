@@ -48,7 +48,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0.0"
+        "php": ">=8.2.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^1"
@@ -60,7 +60,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.0.0"
+            "php": "8.2.0"
         },
         "platform-check": false,
         "sort-packages": true
